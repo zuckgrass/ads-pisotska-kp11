@@ -2,7 +2,7 @@
 using static System.Console;
 using static System.Math;
 
-namespace ASD
+namespace ConsoleApp3
 {
     class Program
     {
@@ -31,8 +31,8 @@ namespace ASD
                 int dirY = -1;
                 int x = n - 1;
                 int y = 1;
-                int max1 = matrix[x, y-1];
-                WriteLine(matrix[x, y-1]);
+                int max1 = matrix[x, y - 1];
+                WriteLine(matrix[x, y - 1]);
                 for (int i = 0; i < m + 2; i++)
                 {
                     for (int j = 1; j < n / 2; j++)
@@ -56,11 +56,12 @@ namespace ASD
                         }
                         WriteLine(matrix[x, y]);
                     }
-                    y ++;
+                    y++;
                     dirX = -dirX;
                     dirY = -dirY;
                 }
-                int max2 = matrix[x / 2, y - 1];
+                int max2 = max1;
+                int a = 0;
                 int N = n / 2 - 1;
                 for (int i = 0; i < n / 2; i++)
                 {
@@ -68,9 +69,12 @@ namespace ASD
                     {
                         for (int j = 0; j < m; j++)
                         {
+                            max2 = max1;
                             if (matrix[N, j] > max2)
                             {
                                 max2 = matrix[N, j];
+                                WriteLine($"[{N},{j}]");
+                                a = max2;
                             }
                             WriteLine(matrix[N, j]);
                         }
@@ -79,16 +83,22 @@ namespace ASD
                     {
                         for (int j = m - 1; j >= 0; j--)
                         {
+                            max2 = max1;
                             if (matrix[N, j] > max2)
                             {
                                 max2 = matrix[N, j];
+                                WriteLine($"[{N},{j}]");
+                                a = max2;
                             }
                             WriteLine(matrix[N, j]);
                         }
                     }
                     N--;
                 }
-                WriteLine("max= " + Max(max1, max2));
+                if (a == 0)
+                {
+                    WriteLine("There is no element bigger than maximum of the first part");
+                }
             }
         }
     }
