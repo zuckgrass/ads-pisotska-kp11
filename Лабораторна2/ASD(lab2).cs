@@ -31,8 +31,9 @@ namespace ASD
                 int dirY = -1;
                 int x = n - 1;
                 int y = 1;
-                int max1 = matrix[x, y-1];
-                WriteLine(matrix[x, y-1]);
+                int max1 = matrix[x, y - 1];
+                int max2 = 0;
+                WriteLine(matrix[x, y - 1]);
                 for (int i = 0; i < m + 2; i++)
                 {
                     for (int j = 1; j < n / 2; j++)
@@ -56,11 +57,11 @@ namespace ASD
                         }
                         WriteLine(matrix[x, y]);
                     }
-                    y ++;
+                    y++;
                     dirX = -dirX;
                     dirY = -dirY;
                 }
-                int max2 = matrix[x / 2, y - 1];
+                max2 = max1;
                 int N = n / 2 - 1;
                 for (int i = 0; i < n / 2; i++)
                 {
@@ -71,8 +72,10 @@ namespace ASD
                             if (matrix[N, j] > max2)
                             {
                                 max2 = matrix[N, j];
+                                WriteLine($"max[{N},{j}]");
                             }
                             WriteLine(matrix[N, j]);
+                            max2 = max1;
                         }
                     }
                     else
@@ -82,13 +85,18 @@ namespace ASD
                             if (matrix[N, j] > max2)
                             {
                                 max2 = matrix[N, j];
+                                WriteLine($"max[{N},{j}]");
                             }
                             WriteLine(matrix[N, j]);
+                            max2 = max1;
                         }
                     }
                     N--;
                 }
-                WriteLine("max= " + Max(max1, max2));
+                if (max2 != max1)
+                    WriteLine("max= " + max2);
+                else
+                    WriteLine("There is no element bigger than maximum of the first part");
             }
         }
     }
