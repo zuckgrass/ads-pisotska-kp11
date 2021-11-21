@@ -32,7 +32,6 @@ namespace ASD
                 int x = n - 1;
                 int y = 1;
                 int max1 = matrix[x, y - 1];
-                int max2 = 0;
                 WriteLine(matrix[x, y - 1]);
                 for (int i = 0; i < m + 2; i++)
                 {
@@ -61,7 +60,8 @@ namespace ASD
                     dirX = -dirX;
                     dirY = -dirY;
                 }
-                max2 = max1;
+                int max2 = max1;
+                int a = 0;
                 int N = n / 2 - 1;
                 for (int i = 0; i < n / 2; i++)
                 {
@@ -69,34 +69,36 @@ namespace ASD
                     {
                         for (int j = 0; j < m; j++)
                         {
+                            max2 = max1;
                             if (matrix[N, j] > max2)
                             {
                                 max2 = matrix[N, j];
-                                WriteLine($"max[{N},{j}]");
+                                WriteLine($"[{N},{j}]");
+                                a = max2;
                             }
                             WriteLine(matrix[N, j]);
-                            max2 = max1;
                         }
                     }
                     else
                     {
                         for (int j = m - 1; j >= 0; j--)
                         {
+                            max2 = max1;
                             if (matrix[N, j] > max2)
                             {
                                 max2 = matrix[N, j];
-                                WriteLine($"max[{N},{j}]");
+                                WriteLine($"[{N},{j}]");
+                                a = max2;
                             }
                             WriteLine(matrix[N, j]);
-                            max2 = max1;
                         }
                     }
                     N--;
                 }
-                if (max2 != max1)
-                    WriteLine("max= " + max2);
-                else
+                if (a == 0)
+                {
                     WriteLine("There is no element bigger than maximum of the first part");
+                }
             }
         }
     }
