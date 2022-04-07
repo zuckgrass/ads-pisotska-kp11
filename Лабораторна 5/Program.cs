@@ -6,10 +6,17 @@ class Program
 {
     static void Main()
     {
-        WriteLine("Commands: keyboard input, generate array, test");
+        WriteLine("Commands: keyboard input, generate array, test, exit");
         Write("Input command: ");
+        int counter = 0;
         while (true)
         {
+            if (counter != 0)
+            {
+                WriteLine("Commands: keyboard input, generate array, test, exit");
+                Write("Input command: ");
+            }
+            counter = 1;
             string[] text;
             string user=ReadLine();
             if(user== "keyboard input")
@@ -38,7 +45,6 @@ class Program
                     }
                 }
                 Sorting(text);
-                return;
             }
             else if(user== "generate array")
             {
@@ -50,12 +56,14 @@ class Program
                     text[i] = rnd.Next(1, 10).ToString();
                 }
                 Sorting(text);
-                return;
             }
             else if(user== "test")
             {
                 string[] test = { "2", "1", "9", "2", "3", "1", "9", "5", "3", "1", "4", "8", "6", "5", "8", "3", "4", "1", "8", "9" };
                 Sorting(test);
+            }
+            else if (user == "exit")
+            {
                 return;
             }
             else
